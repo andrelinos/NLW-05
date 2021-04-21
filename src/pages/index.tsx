@@ -1,15 +1,25 @@
-import Head from 'next/head'
+import { GetStaticProps } from 'next';
 
-export default function Home(props) {
+interface Episode {
+  id: string;
+  title: string;
+  members: string;
+}
+
+interface HomeProps {
+  episodes: Episode[];
+}
+
+export default function Home(props: HomeProps) {
   return (
     <div>
       <h1>Home</h1>
-        <p>{JSON.stringify(props.episodes)}</p>
+      <p>{JSON.stringify(props.episodes)}</p>
     </div>
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('http://localhost:3333/episodes');
   const data = await response.json();
 
