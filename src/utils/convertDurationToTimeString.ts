@@ -1,5 +1,5 @@
 export function convertDurationToTimeString(duration: number) {
-  const hours = Math.floor(duration / 360);
+  const hours = Math.floor(duration / 3600); // 3600 segundos
   const minutes = Math.floor((duration % 3600) / 60);
   const seconds = Math.floor(duration % 60);
 
