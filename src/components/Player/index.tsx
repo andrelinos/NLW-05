@@ -1,14 +1,13 @@
-import Image from "next/image";
-import { useContext, useEffect, useRef } from "react";
-import Slider from "rc-slider";
+import Image from 'next/image';
+import { useContext, useEffect, useRef } from 'react';
+import Slider from 'rc-slider';
 
-import "rc-slider/assets/index.css";
+import 'rc-slider/assets/index.css';
 
-import styles from "./styles.module.scss";
-import { PlayerContext } from "../../context/PlayerContext";
+import styles from './styles.module.scss';
+import { PlayerContext } from '../../context/PlayerContext';
 
 export function Player() {
-
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const {
@@ -22,14 +21,14 @@ export function Player() {
   useEffect(() => {
     if (!audioRef.current) {
       return;
-    } 
+    };
 
     if (isPlaying) {
-      audioRef.current.play()
+      audioRef.current.play();
     } else {
-      audioRef.current.pause()
-    }
-  }, [isPlaying])
+      audioRef.current.pause();
+    };
+  }, [isPlaying]);
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -46,7 +45,8 @@ export function Player() {
             width={592}
             height={592}
             src={episode.thumbnail}
-            objectFit="cover"
+            objectFit="contain"
+            className={styles.thumnailPlayer}
           />
           <strong>{episode.title}</strong>
           <span>{episode.members}</span>
@@ -57,7 +57,7 @@ export function Player() {
         </div>
       )}
 
-      <footer className={!episode ? styles.empty : ""}>
+      <footer className={!episode ? styles.empty : ''}>
         <div className={styles.progress}>
           <span>00:00</span>
           <div className={styles.slider}>
@@ -75,10 +75,10 @@ export function Player() {
         </div>
 
         {episode && (
-          <audio 
-            src={episode.url} 
+          <audio
+            src={episode.url}
             ref={audioRef}
-            autoPlay 
+            autoPlay
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
           />
@@ -97,11 +97,10 @@ export function Player() {
             disabled={!episode}
             onClick={togglePlay}
           >
-            {isPlaying ? (
-              <img src="/assets/pause.svg" alt="Pausar" />
-            ) : (
-              <img src="/assets/play.svg" alt="Tocar" />
-            )}
+            {isPlaying
+              ? (<img src="/assets/pause.svg" alt="Pausar" />)
+              : (<img src="/assets/play.svg" alt="Tocar" />)
+            }
           </button>
           <button type="button" disabled={!episode}>
             <img src="/assets/play-next.svg" alt="Tocar proxíma" />
