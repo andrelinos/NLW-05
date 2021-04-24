@@ -62,8 +62,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     <span>{episode.durationAsString}</span>
                   </div>
 
-                  <button type="button" onClick={ () => play(episode) }>
-                    <img src="/assets/play-green.svg" alt="Tocar episódio" />
+                  <button type="button" onClick={() => play(episode)}>
+                    <img src="/assets/play-green.svg" alt="Tocar episódio" title={episode.title} />
                   </button>
                 </li>
               )
@@ -107,8 +107,8 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     <td style={{ width: 100 }}>{episode.publishedAt}</td>
                     <td>{episode.durationAsString}</td>
                     <td>{
-                      <button type="button">
-                        <img src="/assets/play-green.svg" alt="Tocar episódio" />
+                      <button type="button" onClick={() => play(episode)}>
+                        <img src="/assets/play-green.svg" alt="Tocar episódio" title={episode.title} />
                       </button>
                     }</td>
                   </tr>
