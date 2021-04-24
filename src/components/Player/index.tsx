@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Slider from 'rc-slider';
 
-import 'rc-slider/assets/index.css';
+import { usePlayer } from '../../context/PlayerContext';
 
+import 'rc-slider/assets/index.css';
 import styles from './styles.module.scss';
-import { PlayerContext } from '../../context/PlayerContext';
 
 export function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -15,8 +15,12 @@ export function Player() {
     currentEpisodeIndex,
     isPlaying,
     togglePlay,
-    setPlayingState
-  } = useContext(PlayerContext);
+    playNext,
+    playPrevious,
+    setPlayingState,
+    hasPrevious,
+    hasNext,
+  } = usePlayer();
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -88,7 +92,7 @@ export function Player() {
           <button type="button" disabled={!episode}>
             <img src="/assets/shuffle.svg" alt="Embaralhar" />
           </button>
-          <button type="button" disabled={!episode}>
+          <button type="button" onClick={playPrevious} disabled={!episode || !hasPrevious}>
             <img src="/assets/play-previous.svg" alt="Tocar anterior" />
           </button>
           <button
@@ -102,7 +106,7 @@ export function Player() {
               : (<img src="/assets/play.svg" alt="Tocar" />)
             }
           </button>
-          <button type="button" disabled={!episode}>
+          <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
             <img src="/assets/play-next.svg" alt="Tocar proxíma" />
           </button>
           <button type="button" disabled={!episode}>
