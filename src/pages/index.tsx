@@ -3,14 +3,15 @@ import { useContext } from 'react';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+import Image from 'next/image';
+import Head from 'next/head';
+import Link from 'next/link';
+
 import { api } from '../services/api';
 
 import { PlayerContext } from '../context/PlayerContext';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 
-import Image from 'next/image';
-import Head from 'next/head';
-import Link from 'next/link';
 
 import styles from '../styles/pages/home.module.scss';
 
@@ -38,7 +39,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Podcastr</title>
+        <title>Home : Podcastr</title>
       </Head>
       <div className={styles.homepage}>
         <section className={styles.latestEpisodes}>
