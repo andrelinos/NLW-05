@@ -1,5 +1,5 @@
 .headerContainer {
-  background: var(--white);;
+  background: var(--purple-900);
   height: 6.5rem;
 
   display: flex;
@@ -9,10 +9,20 @@
 
   border-bottom: 1px solid var(--gray-100);
 
+  a {
+    height: 6.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    display: flex;
+    color: #58c354;
+    align-items: center;
+  }
+
   p {
     margin-left: 2rem;
     padding: 0.25rem 0 0.25rem 2rem;
-    border-left: 1px solid var(--gray-100);
+    border-left: 1px solid var(--gray-500);
+    color: var(--gray-500);
   }
 
   span {
